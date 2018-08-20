@@ -1,9 +1,16 @@
 .Person {
     width: 60%;
     margin: 1rem auto;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid rgb(77, 77, 77);
+    box-shadow: 0 2px 3px rgb(82, 82, 82);
     padding: 1rem;
     text-align: center;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.25s;
+}
 
+.Person:hover {
+    cursor: pointer; 
+    background-color: rgb(255, 234, 234);
+    transform: scale(1.05);
 }
