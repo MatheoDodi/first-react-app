@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -61,29 +62,13 @@ class App extends Component {
       style.backgroundColor = 'red';
     }
 
-    let buttonText;
-    if (this.state.showPersons) {
-      buttonText = `Hide Persons`;
-    } else {
-      buttonText = `Show Persons`;
-    }
-
-    let classes = []
-
-    if (this.state.persons.length <= 2) {
-      classes.push('red');
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push('bold');
-    }
-
     return (
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is a test</p>
-        <button
-        style={style}
-        onClick={this.togglePersonsHandler}>{buttonText}</button>
+        <Cockpit
+          persons={this.state.persons}
+          showPersons={this.state.showPersons} 
+          styled={style}
+          click={this.togglePersonsHandler} />
         {persons}
       </div>
     );
