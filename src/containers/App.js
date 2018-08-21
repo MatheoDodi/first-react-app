@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
 
 class App extends Component {
   state = {
@@ -21,10 +21,14 @@ class App extends Component {
     this.setState({persons : persons}); 
   } 
 
-  deletePersonHandler = (personIndex) => {
-    const persons = [...this.state.persons];
-    persons.splice(personIndex, 1);
-    this.setState({persons: persons});
+  deletePersonHandler = (event, personIndex) => {
+    if (event.target.type === 'text') {
+      return;
+    } else {
+      const persons = [...this.state.persons];
+      persons.splice(personIndex, 1);
+      this.setState({persons: persons});
+    }
   }
 
   togglePersonsHandler = () => {
@@ -34,7 +38,8 @@ class App extends Component {
 
   render() { 
     const style = {
-      backgroundColor : 'white',
+      backgroundColor : 'green',
+      color : 'white',
       font : 'inherit',
       border : '1px solid blue',
       padding : '8px',
@@ -46,16 +51,14 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-            {this.state.persons.map((person, index) => {
-              return (<Person
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)} />)
-            })}
+          <Persons 
+            persons={this.state.persons}
+            delete={this.deletePersonHandler}
+            changed={this.nameChangedHandler} />
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
 
     let buttonText;
@@ -65,10 +68,19 @@ class App extends Component {
       buttonText = `Show Persons`;
     }
 
+    let classes = []
+
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is a test</p>
+        <p className={classes.join(' ')}>This is a test</p>
         <button
         style={style}
         onClick={this.togglePersonsHandler}>{buttonText}</button>
