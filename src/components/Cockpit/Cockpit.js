@@ -1,4 +1,5 @@
 import React from 'react';
+import Wrapper from '../../hoc/Wrapper';
 
 const cockpit = ( props ) => {
     let buttonText;
@@ -17,14 +18,14 @@ const cockpit = ( props ) => {
     }
 
     return (
-        <div>
+        <Wrapper>
             <h1>Hi, I'm a React App</h1>
                 <p className={classes.join(' ')}>This is a test</p>
                 <button
                 style={props.styled}
                 onClick={props.click}>{buttonText}
             </button>
-        </div>
+        </Wrapper>
     )
 }
 

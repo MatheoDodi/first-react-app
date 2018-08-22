@@ -4,6 +4,10 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
+  shouldComponentUpdate () {
+    return true;
+  }
+
   state = {
     persons: [
       { id: '1', name: "Matthew", age: 22},
