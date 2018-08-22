@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
   shouldComponentUpdate () {
@@ -67,14 +68,14 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <WithClass classes={'App'}>
         <Cockpit
           persons={this.state.persons}
           showPersons={this.state.showPersons} 
           styled={style}
           click={this.togglePersonsHandler} />
         {persons}
-      </div>
+        </WithClass>      
     );
   
 
