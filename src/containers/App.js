@@ -15,7 +15,8 @@ class App extends Component {
       { id: '2', name: "Linda", age: 23},
       { id: '3', name: "Leonidas", age: -4},
     ],
-    showPersons : false
+    showPersons : false,
+    toggleClicked : 0
   }
 
   nameChangedHandler = (event, id) => {
@@ -38,7 +39,10 @@ class App extends Component {
   }
 
   togglePersonsHandler = () => {
-    this.setState({showPersons: !this.state.showPersons})
+    const doesShow = this.state.showPersons;
+    this.setState(( prevState, props ) => {
+      return {showPersons: !doesShow, toggleClicked : prevState.toggleClicked + 1}
+    } );
   }
   
 
